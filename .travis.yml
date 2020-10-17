@@ -26,9 +26,9 @@ jobs:
       if: |
         commit_message =~ /^Build docker:*/
       script:
-      - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - source ./build_docker.sh
       - docker images
+      - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - docker push ${IMAGE_NAME}
 
 # script:

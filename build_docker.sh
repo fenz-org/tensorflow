@@ -8,8 +8,11 @@
 
 SW_NAME=`echo ${TRAVIS_REPO_SLUG##*/} | sed 's/ *$//g'`
 DOCKER_SW_NAME=${SW_NAME,,}
+echo ${TRAVIS_COMMIT_MESSAGE}
 SW_TAG=${TRAVIS_COMMIT_MESSAGE#*"Build docker:"}
+echo ${SW_TAG}
 SW_TAG=${SW_TAG%%,*}
+echo ${SW_TAG}
 
 export IMAGE_NAME="${DOCKER_ORG}/${DOCKER_SW_NAME}:${SW_TAG}"
 docker build\
