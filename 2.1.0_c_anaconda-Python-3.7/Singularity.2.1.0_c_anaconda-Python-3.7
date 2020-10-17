@@ -2,6 +2,7 @@ Bootstrap: docker
 From: continuumio/miniconda3:4.8.2
 
 %post
+    export PATH="/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     export PYTHON_VERSION=3.7
     export TENSORFLOW_VERSION=2.1.0
     export CONDA_VERSION=4.8.2
