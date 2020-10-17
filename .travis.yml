@@ -1,0 +1,55 @@
+if: |
+  commit_message =~ /^Build.*:/
+
+os: linux
+
+dist: xenial
+
+language: shell
+
+git:
+  depth: 2
+
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_ORG=provarepro
+    - DOCKER_USER=reprova
+    # DOCKER_PASS="..."
+    - secure: "kmwvnIdptcE9dw6I99oNj8SztMMh/inUk1ew1YcJpPavWBw3Sm8GiN4Dq7KUC2kuD1zp5s3+HZYjRVXWfbHJqwSZRfjE0WufIGUeLBrHVtKNVeEkn2ZxSOBanpyolr5tg7YE3SCPY+EtWVA2ZF0xJ1MxV6dj9Ifinim7zVh4OkNJbFnt8xIw/UQuhbq1tU4wtPakTPRIUCzVvpsGoETxUZu1l0Y7WY03M61aeIGtkqJlQKybMuxp1iceQSRlZMOOOLMHJN4ZoeDWhtWqYx0hqnE3j8egfykwihCXDNqWVmdj8Mhm28Ss+6uilgVHM8RObrwc0zrGtkHjoAoYPgKW7S6MtJQoAEsXmsgpRwn9v/B+/3F0yGMOwHok6u/mu/W3IWc0MjFcjJpV43PXJ5LOcd4B9OLlqZhkGDLsM55KO6ukKahP4FBIBy+OJ+nu8TqgSq0aGkFes9tl8stTmGI5WWCgaEqMTE6rPlOQZ34t0qZcY40dZ6M6WdUkSYG6ZnGmra2haRgNEhQ41qFgj2msmUw/UngEijLccYewDCW257YzNJhJqsG8KItawlCaFAnM0QBaIMhKTfmu8nrKLHTcNVqRhNkBP3WhwCpTqPozukZXxLpM7rc8h9Ay4yambEZxcOpBpnVw9vznD4SN7iIzT3d1UGyTykXUNnOJSsibMoE="
+
+jobs:
+  include:
+    - stage: build docker image
+      if: |
+        commit_message =~ /^Build docker:*/
+      script:
+      - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+      - source ./build_docker.sh
+      - docker images
+      - docker push ${IMAGE_NAME}
+
+# script:
+#   - if [ "${DOCKER_BUILD}" == "TRUE" ]; then . ./build_docker.sh; fi
+#   - if [ "${SINGULARITY_BUILD}" == "TRUE" ]; then . ./build_singularity.sh; fi
+
+# before_deploy:
+#   - if [ "${DOCKER_BUILD}" == "TRUE" ]; then docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"; else echo "No Login"; fi
+
+# deploy:
+#   # deploy for docker images
+#   - provider: script
+#     script: docker push ${IMAGE_NAME}
+#     if: |
+#       commit_message =~ /^Build docker:*/
+#     on:
+#       branch: master
+# #  # deploy for singularity images
+# #  - provider: script
+# #    script: docker push ${IMAGE_NAME}
+# #    if: |
+# #      commit_message =~ /^Build singularity:*/
+# #    on:
+# #      branch: master
