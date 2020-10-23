@@ -2,7 +2,7 @@ Bootstrap: docker
 From: python:3.7.7-slim-buster
 
 %post
-    export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    export PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin"
     export PYTHON_VERSION=3.7.7
     export PY_VER=37
     export TENSORFLOW_VERSION=2.1.0
@@ -20,5 +20,5 @@ From: python:3.7.7-slim-buster
     rm tensorflow_cpu-${TENSORFLOW_VERSION}-cp${PY_VER}-cp${PY_VER}m-manylinux2010_x86_64.whl
 
 %environment
-    export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    export PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin"
     export PYTHON_VERSION=3.7.7
