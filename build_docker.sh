@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# SW_FLD=${TRAVIS_COMMIT_MESSAGE#*"Build docker:"}
-# SW_FLD=${SW_FLD%%,*}
-# SW_NAME=`echo ${SW_FLD%%-*} | sed 's/ *$//g'`
-# DOCKER_SW_NAME=${SW_NAME,,}
-# SW_TAG=${SW_FLD#*-}
-
 SW_NAME=`echo ${TRAVIS_REPO_SLUG##*/} | sed 's/ *$//g'`
 DOCKER_SW_NAME=${SW_NAME,,}
 SW_TAG=${TRAVIS_COMMIT_MESSAGE#*"Build docker:"}

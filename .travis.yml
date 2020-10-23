@@ -48,31 +48,3 @@ jobs:
 
         docker push ${IMAGE_NAME}
 
-
-      # - source ./build_docker.sh
-      # - docker images
-      # - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-      # - docker push ${IMAGE_NAME}
-
-# script:
-#   - if [ "${DOCKER_BUILD}" == "TRUE" ]; then . ./build_docker.sh; fi
-#   - if [ "${SINGULARITY_BUILD}" == "TRUE" ]; then . ./build_singularity.sh; fi
-
-# before_deploy:
-#   - if [ "${DOCKER_BUILD}" == "TRUE" ]; then docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"; else echo "No Login"; fi
-
-# deploy:
-#   # deploy for docker images
-#   - provider: script
-#     script: docker push ${IMAGE_NAME}
-#     if: |
-#       commit_message =~ /^Build docker:*/
-#     on:
-#       branch: master
-# #  # deploy for singularity images
-# #  - provider: script
-# #    script: docker push ${IMAGE_NAME}
-# #    if: |
-# #      commit_message =~ /^Build singularity:*/
-# #    on:
-# #      branch: master
