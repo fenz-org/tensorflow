@@ -18,6 +18,7 @@ From: continuumio/miniconda3:4.8.2
         tensorflow=${TENSORFLOW_VERSION}
 
 %environment
+    export PATH="/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     export PYTHON_VERSION=3.7
     export USE_DAAL4PY_SKLEARN=YES
     export CONDA_PROFILE=base
