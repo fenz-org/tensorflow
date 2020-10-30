@@ -30,21 +30,21 @@ From: nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
     echo "conda activate base" >> ~/.bashrc 
     conda config --set always_yes yes --set changeps1 no
 
-    pip install --upgrade pip
-    pip install cython future pillow onnx opencv-python-headless 
+    python -m pip install --upgrade pip
+    python -m pip install cython future pillow onnx opencv-python-headless 
     ln -s /usr/local/cuda/lib64 /usr/local/cuda/lib 
     cp /usr/lib/x86_64-linux-gnu/libnccl* /usr/local/cuda/lib 
     ldconfig
 
     conda install pytorch torchvision -c pytorch
-    pip install tensorflow-gpu==1.14 onnxruntime-gpu
-    pip install Cython 
-    pip install pycocotools
+    python -m pip install tensorflow-gpu==1.14 onnxruntime-gpu
+    python -m pip install Cython 
+    python -m pip install pycocotools
 
     cd /tmp
     git clone https://github.com/fenz/inference
     cd inference/loadgen 
-    pip install pybind11 
+    python -m pip install pybind11 
     CFLAGS="-std=c++14" python setup.py install
     cd /tmp
     mv inference/v0.5/classification_and_detection /mlperf
