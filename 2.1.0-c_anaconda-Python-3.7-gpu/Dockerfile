@@ -43,4 +43,6 @@ ENV TENSORFLOW_VERSION=2.1.0 \
     USE_DAAL4PY_SKLEARN=YES
 
 RUN conda install -y -c ${CONDA_CNL} \
+        cudatoolkit=${CUDA_VERSION} \
+        cudnn=7.6.5 \
         tensorflow-gpu=${TENSORFLOW_VERSION}
